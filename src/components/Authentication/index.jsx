@@ -3,7 +3,6 @@ import "./index.scss";
 import { Link } from "react-router-dom";
 import { Form, Formik, Field, ErrorMessage } from "formik";
 import { authSchema } from "../../schemas/auth";
-import { Heading, Button } from "evergreen-ui";
 
 const Auth = ({ authType, onSubmit }) => {
   const authenticationType = authType === "login" ? "Sign In " : "Sign Up ";
@@ -36,10 +35,12 @@ const Auth = ({ authType, onSubmit }) => {
       </div>
 
       <div className="right">
-        <div className="logo">AURORA</div>
-        <Heading size={600} textAlign="center" marginTop={20} color="#5b8a72">
-          “Share your knowledge. It is a way to achieve immortality.”
-        </Heading>
+        <div className="header">
+          <div className="logo">AURORA</div>
+          <p className="mission">
+            “Share your knowledge. It is a way to achieve immortality.”
+          </p>
+        </div>
         <Formik
           initialValues={{ email: "", password: "" }}
           onSubmit={(values) => onSubmit(values)}
@@ -47,9 +48,9 @@ const Auth = ({ authType, onSubmit }) => {
         >
           {() => (
             <Form className="form">
-              <Heading size={700} color="#5b8a72" marginBottom={24}>
+              <p className="form-heading">
                 {authenticationType} to your account
-              </Heading>
+              </p>
               <div className="form-field">
                 <Field
                   className="text-input"
@@ -75,9 +76,9 @@ const Auth = ({ authType, onSubmit }) => {
                   name="password"
                 />
               </div>
-              <Button height={42} type="submit">
+              <button className="submit-btn" type="submit">
                 {authenticationType}
-              </Button>
+              </button>
             </Form>
           )}
         </Formik>

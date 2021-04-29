@@ -1,5 +1,4 @@
 import "./index.scss";
-import { Avatar, Text } from "evergreen-ui";
 
 export const Book = ({ book }) => {
   return (
@@ -8,22 +7,19 @@ export const Book = ({ book }) => {
         <img alt="" src="https://picsum.photos/300/250" />
       </div>
       <div className="meta">
-        <Avatar
-          marginRight={10}
-          src={book?.userImage}
-          name={book?.userName}
-          size={40}
-        />
+        <div className="avatar-wrapper">
+          <img src={book?.userImage} alt={book?.userName} />
+        </div>
         <div>
           <div>
-            <Text color="#ffffff">
+            <p className="meta-text">
               <strong>Title:</strong> {book?.bookTitle}
-            </Text>
+            </p>
           </div>
           <div>
-            <Text color="#ffffff">
+            <p className="meta-text">
               <strong>Author:</strong> {book?.bookAuthor}
-            </Text>
+            </p>
           </div>
         </div>
       </div>

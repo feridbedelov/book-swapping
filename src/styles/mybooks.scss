@@ -1,0 +1,31 @@
+.my-books-container {
+  .header {
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #bfcba8;
+
+    h3 {
+      font-family: "Inter";
+      font-style: italic;
+      font-weight: 500;
+      font-size: 22px;
+      line-height: 28px;
+      color: #ffffff;
+    }
+    a {
+      padding: 14px;
+      text-align: center;
+      background: #5b8a72;
+      width: 120px;
+      text-decoration: none;
+      cursor: pointer;
+      color: white;
+    }
+  }
+
+  .my-books-list {
+    padding: 30px;
+  }
+}

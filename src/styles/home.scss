@@ -5,19 +5,36 @@
     background: #bfcba8;
     text-align: center;
 
+    .search-title {
+      color: white;
+      margin-bottom: 18px;
+      font-size: 24px;
+    }
+
     .form-field {
       display: flex;
       align-items: center;
       justify-content: center;
+
+      input {
+        height: 42px;
+        border: none;
+        outline: none;
+        width: 300px;
+        padding: 0 8px;
+        font-size: 16px;
+      }
     }
 
     .search-btn {
       background: #5b8a72;
-      height: 40px;
+      height: 42px;
       outline: none;
       color: #bfcba8;
       font-size: 15px;
       cursor: pointer;
+      border: none;
+      width: 80px;
     }
   }
 

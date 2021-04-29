@@ -11,26 +11,40 @@
   }
 
   .right {
-    position: relative;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+
+    .header {
+      margin-top: 35px;
+      color: #5b8a72;
+      font-family: "Inter", sans-serif;
+      text-align: center;
+    }
 
     .logo {
-      color: #5b8a72;
-      margin-top: 35px;
-      text-align: center;
       font-size: 44px;
       font-style: italic;
-      font-family: "Inter", sans-serif;
       font-weight: 600;
     }
 
+    .mission {
+      margin-top: 20px;
+      font-size: 22px;
+      padding: 0 15px;
+    }
+
     .form {
-      margin-top: 40px;
       display: flex;
       flex-direction: column;
       align-items: center;
+
+      .form-heading {
+        color: #5b8a72;
+        margin-bottom: 24px;
+        font-size: 22px;
+      }
 
       .form-field {
         margin-bottom: 18px;
@@ -53,11 +67,18 @@
           color: red;
         }
       }
+      .submit-btn {
+        height: 42px;
+        width: 340px;
+        border: none;
+        border-radius: 5px;
+        background-color: #5b8a72;
+        color: white;
+        cursor: pointer;
+        font-size: 18px;
+      }
     }
     .actions {
-      position: absolute;
-      bottom: 0;
-      right: 0;
       width: 100%;
       background-color: #f3efef;
       padding: 28px;
