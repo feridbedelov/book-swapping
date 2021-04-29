@@ -1,0 +1,29 @@
+.home-container {
+  max-width: 100%;
+  .search-box {
+    padding: 50px 0;
+    background: #bfcba8;
+    text-align: center;
+
+    .form-field {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .search-btn {
+      background: #5b8a72;
+      height: 40px;
+      outline: none;
+      color: #bfcba8;
+      font-size: 15px;
+      cursor: pointer;
+    }
+  }
+
+  .results-wrapper {
+    .results {
+      padding: 40px;
+    }
+  }
+}

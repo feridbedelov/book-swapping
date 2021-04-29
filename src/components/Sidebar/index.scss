@@ -1,0 +1,53 @@
+.nav-wrapper {
+  height: 100%;
+  width: 240px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #5b8a72;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .logo {
+    margin-top: 25px;
+    text-align: center;
+    font-size: 32px;
+    font-style: italic;
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    color: #bfcba8;
+  }
+
+  nav.links {
+    align-self: center;
+    ul {
+      list-style: none;
+      li {
+        margin-bottom: 15px;
+
+        a {
+          text-decoration: none;
+          font-family: "Inter";
+          font-style: italic;
+          font-weight: 500;
+          font-size: 22px;
+          color: #bfcba8;
+        }
+      }
+    }
+  }
+
+  .logoutBtn {
+    font-family: "Inter";
+    font-style: italic;
+    font-weight: 500;
+    font-size: 22px;
+    color: #bfcba8;
+    margin-bottom: 25px;
+    text-align: center;
+    cursor: pointer;
+  }
+}
