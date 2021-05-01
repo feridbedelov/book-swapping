@@ -1,15 +1,11 @@
 import React from "react";
 import { render } from "react-dom";
-import { BrowserRouter } from "react-router-dom";
 import "./index.css";
-import App from "./pages/App";
+import App from "./apps/App";
 import reportWebVitals from "./reportWebVitals";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-const app = (
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
-);
+const app = <App />;
 
 render(app, document.getElementById("root"));
 

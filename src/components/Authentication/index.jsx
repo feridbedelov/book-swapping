@@ -1,25 +1,26 @@
 import React from "react";
 import "./index.scss";
-import { Link } from "react-router-dom";
 import { Form, Formik, Field, ErrorMessage } from "formik";
 import { authSchema } from "../../schemas/auth";
 
-const Auth = ({ authType, onSubmit }) => {
+const Auth = ({ authType, onSubmit, setAuthType }) => {
   const authenticationType = authType === "login" ? "Sign In " : "Sign Up ";
 
-  const switchLink = () => {
+  const switchAuth = () => {
     switch (authType) {
       case "login":
         return (
           <div className="actions">
-            Don't have an account? <Link to="/register"> Sign up</Link>
+            Don't have an account?{" "}
+            <button onClick={() => setAuthType("register")}> Sign Up </button>
           </div>
         );
 
       case "register":
         return (
           <div className="actions">
-            Already have an account? <Link to="/login">Sign in</Link>
+            Already have an account?{" "}
+            <button onClick={() => setAuthType("login")}> Sign In </button>
           </div>
         );
 
@@ -31,7 +32,7 @@ const Auth = ({ authType, onSubmit }) => {
   return (
     <div className="auth-page-container">
       <div className="left">
-        <div className="about-app">How it works?</div>
+        <div className="about-app">How does it work?</div>
       </div>
 
       <div className="right">
@@ -82,7 +83,7 @@ const Auth = ({ authType, onSubmit }) => {
             </Form>
           )}
         </Formik>
-        {switchLink()}
+        {switchAuth()}
       </div>
     </div>
   );

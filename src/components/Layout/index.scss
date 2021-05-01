@@ -1,8 +1,8 @@
-.container {
+.layout-container {
   display: flex;
   overflow-x: hidden;
 
-  .main {
+  .main-container {
     margin-left: 240px;
     flex-grow: 1;
   }

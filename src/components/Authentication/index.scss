@@ -86,7 +86,11 @@
       font-size: 18px;
       color: #5b8a72;
 
-      a {
+      button {
+        border: none;
+        cursor: pointer;
+        font-size: inherit;
+        text-decoration: underline;
         color: inherit;
       }
     }

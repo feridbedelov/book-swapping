@@ -3,9 +3,9 @@ import "./index.scss";
 
 const Layout = ({ children }) => {
   return (
-    <div className="container">
+    <div className="layout-container">
       <Sidebar />
-      <div className="main">{children}</div>
+      <div className="main-container">{children}</div>
     </div>
   );
 };

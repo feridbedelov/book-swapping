@@ -4,7 +4,7 @@ import { Tabs } from "../components/Tabs";
 import { BooksList } from "../components/BooksList";
 import { data } from "../data";
 
-export default function HomePage() {
+export function HomePage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [activeTab, setActiveTab] = useState(1);
 

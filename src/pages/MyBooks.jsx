@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { BooksList } from "../components/BooksList";
 import { data } from "../data";
 
-export default function MyBooks() {
+export function MyBooks() {
   return (
     <div className="my-books-container">
       <div className="header">
