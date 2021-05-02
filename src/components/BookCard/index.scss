@@ -1,34 +1,15 @@
-.book-card {
-  margin-bottom: 40px;
-  width: 300px;
-  background: #bfcba8;
+.btn-wrapper {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
 
-  .meta {
-    display: flex;
-    padding: 8px;
+.book-more-btn {
+  text-decoration: underline;
+  cursor: pointer;
+  color: #5b8a72;
 
-    .avatar-wrapper {
-      margin-right: 10px;
-      overflow: hidden;
-      position: relative;
-      display: inline-flex;
-      justify-content: center;
-      flex-shrink: 0;
-      border-radius: 50%;
-      cursor: pointer;
-      width: 40px;
-      height: 40px;
-
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-    }
-
-    p.meta-text {
-      color: white;
-      margin-bottom: 4px;
-    }
+  &:hover {
+    color: #5b8a72;
   }
 }

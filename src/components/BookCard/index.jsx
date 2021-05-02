@@ -1,26 +1,24 @@
 import "./index.scss";
+import { Link } from "react-router-dom";
+import { Image } from "react-bootstrap";
 
-export const Book = ({ book }) => {
+export const Book = ({ book, linkUrl }) => {
   return (
-    <div className="book-card">
-      <div className="image">
-        <img alt="" src="https://picsum.photos/300/250" />
-      </div>
-      <div className="meta">
-        <div className="avatar-wrapper">
-          <img src={book?.userImage} alt={book?.userName} />
+    <div className="card">
+      <img
+        src="https://picsum.photos/300/250"
+        className="card-img-top"
+        alt={book?.bookTitle}
+      />
+      <div className="card-body" style={{ position: "relative" }}>
+        <div className="d-flex align-items-start">
+          <Image src={book?.userImage} alt={book?.userName} roundedCircle />
+          <span className="card-title ml-2">{book?.bookTitle}</span>
         </div>
-        <div>
-          <div>
-            <p className="meta-text">
-              <strong>Title:</strong> {book?.bookTitle}
-            </p>
-          </div>
-          <div>
-            <p className="meta-text">
-              <strong>Author:</strong> {book?.bookAuthor}
-            </p>
-          </div>
+        <div className="btn-wrapper">
+          <Link to={linkUrl} className="book-more-btn">
+            More
+          </Link>
         </div>
       </div>
     </div>

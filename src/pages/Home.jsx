@@ -31,7 +31,7 @@ export function HomePage() {
           active={activeTab}
         />
         <div className="results">
-          <BooksList books={data} />
+          <BooksList books={data} goTo="detail" />
         </div>
       </div>
     </div>

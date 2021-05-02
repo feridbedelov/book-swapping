@@ -1,0 +1,21 @@
+.book-edit-container {
+  background: #bfcba8;
+  min-height: 100vh;
+  padding: 25px;
+
+  .title {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 38px;
+    color: #ffffff;
+    margin-bottom: 16px;
+  }
+
+  .hr {
+    border-bottom: 1px solid white;
+    min-width: 100%;
+    margin-bottom: 32px;
+  }
+}

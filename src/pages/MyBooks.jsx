@@ -11,7 +11,7 @@ export function MyBooks() {
         <Link to="/my-books/new">Add Book</Link>
       </div>
       <div className="my-books-list">
-        <BooksList books={data} />
+        <BooksList books={data} goTo="detail" />
       </div>
     </div>
   );
