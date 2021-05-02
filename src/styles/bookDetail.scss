@@ -1,2 +1,11 @@
 .book-detail-container {
+  background: #bfcba8;
+  min-height: 100vh;
+
+  .meta {
+    margin: 20px 0;
+    span {
+      margin-right: 10px;
+    }
+  }
 }
