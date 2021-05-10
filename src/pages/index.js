@@ -4,3 +4,6 @@ export { ProfilePage } from "./Profile";
 export { NewBook } from "./NewBook";
 export { BookEdit } from "./BookEdit";
 export { BookDetailView } from "./BookDetailView";
+export { Login } from "./Login";
+export { Register } from "./Register";
+export { Logout } from "./Logout";

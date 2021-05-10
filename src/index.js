@@ -4,12 +4,14 @@ import "./index.css";
 import App from "./apps/App";
 import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
+import AuthProviders from "./contexts";
 
-const app = <App />;
+const app = (
+  <AuthProviders>
+    <App />
+  </AuthProviders>
+);
 
 render(app, document.getElementById("root"));
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

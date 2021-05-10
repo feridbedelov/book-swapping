@@ -1,12 +1,10 @@
 import { useState } from "react";
 import "../styles/home.scss";
-import { Tabs } from "../components/Tabs";
 import { BooksList } from "../components/BooksList";
 import { data } from "../data";
 
 export function HomePage() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [activeTab, setActiveTab] = useState(1);
 
   return (
     <div className="home-container">
@@ -25,11 +23,6 @@ export function HomePage() {
         </form>
       </div>
       <div className="results-wrapper">
-        <Tabs
-          tabs={["Last Added Books", "Searched Books"]}
-          onTabClick={setActiveTab}
-          active={activeTab}
-        />
         <div className="results">
           <BooksList books={data} goTo="detail" />
         </div>

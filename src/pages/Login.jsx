@@ -1,34 +1,31 @@
 import React from "react";
-import "./index.scss";
+import "../styles/auth.scss";
 import { Form, Formik, Field, ErrorMessage } from "formik";
-import { authSchema } from "../../schemas/auth";
+import { loginSchema } from "../schemas/auth";
+import { useAuthContext } from "../contexts/Auth.context";
+import { useAsync } from "../hooks/useAsync";
+import { Spinner } from "../components/Spinner/Spinner";
 
-const Auth = ({ authType, onSubmit, setAuthType }) => {
-  const authenticationType = authType === "login" ? "Sign In " : "Sign Up ";
+export const Login = ({ history }) => {
+  const { login } = useAuthContext();
+  const { run, isLoading, error } = useAsync();
 
-  const switchAuth = () => {
-    switch (authType) {
-      case "login":
-        return (
-          <div className="actions">
-            Don't have an account?{" "}
-            <button onClick={() => setAuthType("register")}> Sign Up </button>
+  const showErrorMessage = () => {
+    return error?.errors?.map((err) => {
+      return (
+        <div className="mb-0 form-field">
+          <div className="alert alert-danger" role="alert">
+            {err}
           </div>
-        );
-
-      case "register":
-        return (
-          <div className="actions">
-            Already have an account?{" "}
-            <button onClick={() => setAuthType("login")}> Sign In </button>
-          </div>
-        );
-
-      default:
-        return null;
-    }
+        </div>
+      );
+    });
   };
 
+  const onSubmit = async (values) => {
+    await run(login(values));
+    history.push("/");
+  };
   return (
     <div className="auth-page-container">
       <div className="left">
@@ -45,13 +42,12 @@ const Auth = ({ authType, onSubmit, setAuthType }) => {
         <Formik
           initialValues={{ email: "", password: "" }}
           onSubmit={(values) => onSubmit(values)}
-          validationSchema={authSchema}
+          validationSchema={loginSchema}
         >
           {() => (
             <Form className="form">
-              <p className="form-heading">
-                {authenticationType} to your account
-              </p>
+              <p className="form-heading">Sign In to your account</p>
+              {showErrorMessage()}
               <div className="form-field">
                 <Field
                   className="text-input"
@@ -77,16 +73,17 @@ const Auth = ({ authType, onSubmit, setAuthType }) => {
                   name="password"
                 />
               </div>
-              <button className="submit-btn" type="submit">
-                {authenticationType}
+              <button disabled={isLoading} className="submit-btn" type="submit">
+                {isLoading ? <Spinner /> : "Sign In"}
               </button>
             </Form>
           )}
         </Formik>
-        {switchAuth()}
+        <div className="actions">
+          Don't have an account?{"  "}
+          <button onClick={() => history.push("register")}> Sign Up </button>
+        </div>
       </div>
     </div>
   );
 };
-
-export default Auth;

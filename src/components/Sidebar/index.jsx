@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
+import { useAuthContext } from "../../contexts/Auth.context";
 import "./index.scss";
 export const Sidebar = () => {
+  const { logout } = useAuthContext();
+
   return (
     <div className="nav-wrapper">
       <div className="logo">Aurora</div>
@@ -17,7 +20,9 @@ export const Sidebar = () => {
           </li>
         </ul>
       </nav>
-      <div className="logoutBtn"> Logout </div>
+      <div onClick={logout} className="logoutBtn">
+        Logout
+      </div>
     </div>
   );
 };
