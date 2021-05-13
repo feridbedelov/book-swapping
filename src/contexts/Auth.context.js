@@ -15,7 +15,7 @@ const AuthContext = createContext();
 
 export const AuthProvider = (props) => {
   const queryClient = useQueryClient();
-  const { data: user, isLoading, isIdle, isSuccess, run, setData } = useAsync();
+  const { data: user, isLoading, isIdle, run, setData } = useAsync();
 
   useEffect(() => {
     run(getCurrentUser());
@@ -25,29 +25,25 @@ export const AuthProvider = (props) => {
     (form) => auth.login(form).then((user) => setData(user)),
     [setData]
   );
+
   const register = useCallback(
     (form) => auth.register(form).then((user) => setData(user)),
     [setData]
   );
+
   const logout = useCallback(async () => {
     setData(null);
     await auth.logout();
     queryClient.clear();
   }, [setData, queryClient]);
 
-  const value = useMemo(() => ({ user, login, logout, register }), [
-    login,
-    logout,
-    register,
-    user,
-  ]);
+  const value = useMemo(
+    () => ({ user, login, logout, register }),
+    [login, logout, register, user]
+  );
 
   if (isLoading || isIdle) {
     return <FullPageSpinner />;
-  }
-
-  if (isSuccess) {
-    return <AuthContext.Provider value={value} {...props} />;
   }
   return <AuthContext.Provider value={value} {...props} />;
 };

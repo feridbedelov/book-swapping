@@ -1,6 +1,7 @@
-import axios from "axios";
 import { getToken } from "../utils/token";
 import { logout } from "../services/auth.provider";
+import axios from "axios";
+import { history } from "../utils/history";
 
 const axiosInstance = axios.create({
   baseURL: "https://bookswap.azurewebsites.net",
@@ -25,6 +26,7 @@ axiosInstance.interceptors.response.use(
       if (axiosInstance.setAuthStateValue)
         axiosInstance.setAuthStateValue(null);
       await logout();
+      history.push("/logout");
     }
     return Promise.reject(error.response.data);
   }

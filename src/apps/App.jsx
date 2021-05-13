@@ -16,29 +16,23 @@ import {
 
 export default function App() {
   return (
-    <>
-      <Switch>
-        <RedirectToHome exact path="/login" component={Login} />
-        <RedirectToHome exact path="/register" component={Register} />
-        <Route exact path="/logout" component={Logout} />
+    <Switch>
+      <RedirectToHome exact path="/login" component={Login} />
+      <RedirectToHome exact path="/register" component={Register} />
+      <Route exact path="/logout" component={Logout} />
 
-        <Layout>
-          <ProtectedRoute exact path="/" component={HomePage} />
-          <ProtectedRoute exact path="/profile" component={ProfilePage} />
-          <ProtectedRoute exact path="/my-books" component={MyBooks} />
-          <ProtectedRoute
-            exact
-            path="/books/detail/:id"
-            component={BookDetailView}
-          />
-          <ProtectedRoute exact path="/my-books/new" component={NewBook} />
-          <ProtectedRoute
-            exact
-            path="/my-books/edit/:id"
-            component={BookEdit}
-          />
-        </Layout>
-      </Switch>
-    </>
+      <Layout>
+        <ProtectedRoute exact path="/" component={HomePage} />
+        <ProtectedRoute exact path="/profile" component={ProfilePage} />
+        <ProtectedRoute exact path="/my-books" component={MyBooks} />
+        <ProtectedRoute
+          exact
+          path="/books/detail/:id"
+          component={BookDetailView}
+        />
+        <ProtectedRoute exact path="/my-books/new" component={NewBook} />
+        <ProtectedRoute exact path="/my-books/edit/:id" component={BookEdit} />
+      </Layout>
+    </Switch>
   );
 }

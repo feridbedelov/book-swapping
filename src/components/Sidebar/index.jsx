@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
-import { useAuthContext } from "../../contexts/Auth.context";
+import { useHistory } from "react-router-dom";
 import "./index.scss";
+
 export const Sidebar = () => {
-  const { logout } = useAuthContext();
+  const history = useHistory();
 
   return (
     <div className="nav-wrapper">
@@ -20,7 +21,7 @@ export const Sidebar = () => {
           </li>
         </ul>
       </nav>
-      <div onClick={logout} className="logoutBtn">
+      <div onClick={() => history.push("/logout")} className="logoutBtn">
         Logout
       </div>
     </div>

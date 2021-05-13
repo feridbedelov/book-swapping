@@ -18,10 +18,17 @@ export const BooksList = ({ books, goTo }) => {
   }
 
   return (
-    <div className="books-list">
-      {books.map((book) => (
-        <Book book={book} key={book.id} linkUrl={linkUrl(book.id)} />
-      ))}
+    <div className="row py-4 px-4">
+      {books.map((book) => {
+        return (
+          <div
+            className="col-sm-12 col-md-6 col-lg-4 col-xl-3 mb-3"
+            key={book.id}
+          >
+            <Book book={book} linkUrl={linkUrl(book.id)} />
+          </div>
+        );
+      })}
     </div>
   );
 };
