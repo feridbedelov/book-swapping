@@ -3,7 +3,7 @@ import { AuthProvider } from "./Auth.context";
 import { ScrollToTop } from "../components/ScrollToTop";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
-const queryClient = new QueryClient();
+export const queryClient = new QueryClient();
 
 export default function AppProviders({ children }) {
   return (

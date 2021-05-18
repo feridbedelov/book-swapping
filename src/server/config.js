@@ -25,7 +25,6 @@ axiosInstance.interceptors.response.use(
     if (error.response.status === 401 && !originalRequest._retry) {
       if (axiosInstance.setAuthStateValue)
         axiosInstance.setAuthStateValue(null);
-      await logout();
       history.push("/logout");
     }
     return Promise.reject(error.response.data);

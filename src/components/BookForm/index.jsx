@@ -2,19 +2,12 @@ import { Form, Formik, Field, ErrorMessage } from "formik";
 import { Link } from "react-router-dom";
 import "./index.scss";
 import { ImageUpload } from "../FileUpload";
+import { Spinner } from "../Spinner/Spinner";
+import { bookSchema } from "../../schemas/book";
 
-const initialValues = {
-  title: "",
-  author: "",
-  pageSize: "",
-  tags: "",
-  description: "",
-  imageFile: "",
-};
-
-export const BookForm = () => {
-  const onSubmitHandler = (values) => {
-    console.log(values);
+export const BookForm = ({ onSubmit, loading, initialValues }) => {
+  const onSubmitHandler = async (values) => {
+    await onSubmit(values);
   };
 
   return (
@@ -22,6 +15,7 @@ export const BookForm = () => {
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => onSubmitHandler(values)}
+        validationSchema={bookSchema}
       >
         {({ setFieldValue, values }) => {
           return (
@@ -55,29 +49,60 @@ export const BookForm = () => {
                     />
                   </div>
                   <div className="form-group">
-                    <label className="mb-0"> Page Size </label>
+                    <label className="mb-0"> Page Number </label>
                     <Field
                       className="form-control"
-                      name="pageSize"
-                      placeholder="Enter the page size"
+                      name="pageNum"
+                      placeholder="Enter the page number"
                     />
                     <ErrorMessage
                       component="div"
                       className="error-msg"
-                      name="pageSize"
+                      name="pageNum"
                     />
                   </div>
                   <div className="form-group">
-                    <label className="mb-0"> Tags </label>
-                    <Field
-                      className="form-control"
-                      name="tags"
-                      placeholder="Enter the relevant tags with comma"
-                    />
+                    <div className="mb-0"> Condition </div>
+                    <div className="form-check form-check-inline">
+                      <Field
+                        type="radio"
+                        className="form-check-input"
+                        id="inlineRadio1"
+                        name="condition"
+                        value="New"
+                      />
+                      <label className="form-check-label" for="inlineRadio1">
+                        New
+                      </label>
+                    </div>
+                    <div className="form-check form-check-inline">
+                      <Field
+                        type="radio"
+                        className="form-check-input"
+                        id="inlineRadio2"
+                        name="condition"
+                        value="Good"
+                      />
+                      <label className="form-check-label" for="inlineRadio2">
+                        Good
+                      </label>
+                    </div>
+                    <div className="form-check form-check-inline">
+                      <Field
+                        type="radio"
+                        className="form-check-input"
+                        id="inlineRadio3"
+                        name="condition"
+                        value="Poor"
+                      />
+                      <label className="form-check-label" for="inlineRadio3">
+                        Poor
+                      </label>
+                    </div>
                     <ErrorMessage
                       component="div"
                       className="error-msg"
-                      name="tags"
+                      name="condition"
                     />
                   </div>
                 </div>
@@ -90,6 +115,7 @@ export const BookForm = () => {
                       style={{ height: 115 }}
                       className="form-control"
                       name="description"
+                      maxLength="250"
                       placeholder="Enter the description"
                     />
                     <ErrorMessage
@@ -118,10 +144,15 @@ export const BookForm = () => {
                     />
                   </div>
                   <div className="d-flex justify-content-end">
-                    <button className=" btn btn-outline-light" type="submit">
-                      Save
+                    <button
+                      disabled={loading}
+                      className=" btn btn-outline-light"
+                      type="submit"
+                    >
+                      {loading ? <Spinner /> : "Save"}
                     </button>
                     <Link
+                      disabled={loading}
                       to="/my-books"
                       className=" btn btn-secondary ml-2"
                       type="button"

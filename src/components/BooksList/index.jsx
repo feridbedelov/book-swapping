@@ -19,7 +19,7 @@ export const BooksList = ({ books, goTo }) => {
 
   return (
     <div className="row py-4 px-4">
-      {books.map((book) => {
+      {books?.map((book) => {
         return (
           <div
             className="col-sm-12 col-md-6 col-lg-4 col-xl-3 mb-3"
