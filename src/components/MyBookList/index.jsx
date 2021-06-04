@@ -1,18 +1,7 @@
-import { Book } from "../BookCard";
+import { MyBook } from "../MyBookCard";
 import "./index.scss";
 
-export const BooksList = ({ books, goTo }) => {
-  const linkUrl = (id) => {
-    switch (goTo) {
-      case "edit":
-        return `/my-books/edit/${id}`;
-      case "detail":
-        return `/books/detail/${id}`;
-      default:
-        break;
-    }
-  };
-
+export const MyBookList = ({ books }) => {
   if (books && !books.length) {
     return <div>No book found</div>;
   }
@@ -25,7 +14,7 @@ export const BooksList = ({ books, goTo }) => {
             className="col-sm-12 col-md-6 col-lg-4 col-xl-3 mb-3"
             key={book.id}
           >
-            <Book book={book} linkUrl={linkUrl(book.id)} />
+            <MyBook book={book} />
           </div>
         );
       })}

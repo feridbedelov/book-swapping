@@ -71,7 +71,10 @@ export const BookForm = ({ onSubmit, loading, initialValues }) => {
                         name="condition"
                         value="New"
                       />
-                      <label className="form-check-label" for="inlineRadio1">
+                      <label
+                        className="form-check-label"
+                        htmlFor="inlineRadio1"
+                      >
                         New
                       </label>
                     </div>
@@ -83,7 +86,10 @@ export const BookForm = ({ onSubmit, loading, initialValues }) => {
                         name="condition"
                         value="Good"
                       />
-                      <label className="form-check-label" for="inlineRadio2">
+                      <label
+                        className="form-check-label"
+                        htmlFor="inlineRadio2"
+                      >
                         Good
                       </label>
                     </div>
@@ -95,7 +101,10 @@ export const BookForm = ({ onSubmit, loading, initialValues }) => {
                         name="condition"
                         value="Poor"
                       />
-                      <label className="form-check-label" for="inlineRadio3">
+                      <label
+                        className="form-check-label"
+                        htmlFor="inlineRadio3"
+                      >
                         Poor
                       </label>
                     </div>
@@ -128,7 +137,8 @@ export const BookForm = ({ onSubmit, loading, initialValues }) => {
                   <div className="form-group">
                     <label className="mb-0"> Image </label>
                     <ImageUpload
-                      value={values?.imageFile?.name || ""}
+                      accept={"image/png, image/gif, image/jpeg"}
+                      value={values?.imageFile?.name || values?.imagePath || ""}
                       name="imageFile"
                       onChange={(event) =>
                         setFieldValue(

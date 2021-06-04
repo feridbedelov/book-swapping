@@ -2,10 +2,10 @@ import { BookForm } from "../components/BookForm";
 import "../styles/newBook.scss";
 import { post } from "../server/utils";
 import { apiUrls } from "../server/urlConfig";
-import { imageBaseUrl } from "../consts";
 import { queryClient } from "../contexts";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const NewBook = () => {
   const [loading, setLoading] = useState(false);
@@ -37,16 +37,16 @@ export const NewBook = () => {
 
     try {
       const response = await post(apiUrls.bookUploadImage, formData, options);
-      const imagePath = `${imageBaseUrl}/${response.fileName}`;
+      const imagePath = `${response.fileName}`;
       await post(apiUrls.book, { ...requestData, imagePath });
       await queryClient.invalidateQueries("my-books");
-      // Show Success Notification (toast)
+      toast.success("Successfully added");
+      setLoading(false);
       history.push("/my-books");
     } catch (error) {
-      // Show Error Notification (toast)
-      console.log(error);
-    } finally {
+      toast.error("Server error");
       setLoading(false);
+      console.log(error);
     }
   };
 

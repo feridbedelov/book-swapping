@@ -1,50 +1,65 @@
 import { useState } from "react";
+import { useQuery } from "react-query";
 import { OfferModal } from "../components/OfferModal";
+import { FullPageSpinner } from "../components/Spinner/FullPageSpinner";
+import { imageBaseUrl } from "../consts";
+import { fetchSingleBook } from "../services/book.provider";
 import "../styles/bookDetail.scss";
 
-export function BookDetailView() {
+export function BookDetailView({ match }) {
   const [modalShow, setModalShow] = useState(false);
+  const {
+    params: { id },
+  } = match;
+
+  const {
+    data: bookDetails,
+    isLoading,
+    isError,
+  } = useQuery(["book", id], () => fetchSingleBook(id));
+
+  if (isLoading) {
+    return (
+      <div className="book-detail-container">
+        <FullPageSpinner />;
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className="book-detail-container text-white d-flex justify-content-center align-items-center">
+        Server Error
+      </div>
+    );
+  }
+
+  const { author, title, description, imagePath, pageNum, user } = bookDetails;
+
   return (
     <>
       <div className="book-detail-container">
         <div className="row p-5 text-white">
           <div className="col-md-7">
-            <h2 className="title">The Naked Sun</h2>
+            <h2 className="title">{title}</h2>
             <div className="details">
-              <h4 className="subtitle">Author: Isaac Asimov </h4>
-              <p>Page Size: 300 </p>
+              <h4 className="subtitle">Author: {author} </h4>
+              <p>Page Size: {pageNum} pages </p>
               <p>
-                <b>Farid11</b> offers this book
+                <b>{user?.fullName}</b> offers this book
               </p>
-              <p className="description">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam
-                optio fuga quaerat facilis tenetur impedit, provident saepe!
-                Qui, sapiente dignissimos dolores voluptatum, asperiores rem
-                aliquid, hic fuga beatae sunt voluptates accusamus expedita
-                blanditiis facere cupiditate mollitia modi molestiae ipsum cum.
-                Quod nihil incidunt iste laboriosam, odit mollitia iusto
-                dolores. Inventore ducimus iure recusandae, laborum architecto
-                nesciunt facilis doloribus nam voluptatem? Aliquid ad
-                necessitatibus dolor error sint laboriosam impedit facere
-                reprehenderit!
-              </p>
+              <p className="description">{description}</p>
             </div>
           </div>
           <div className="col-md-5">
-            <div className="img-wrapper">
+            <div className="img-wrapper mb-4">
               <img
                 className="img-fluid rounded"
-                src="https://picsum.photos/300/350"
-                alt="book-title"
+                src={`${imageBaseUrl}/${imagePath}`}
+                alt={title}
               />
             </div>
-            <div className="meta">
-              <span>Tag1</span>
-              <span>Tag2</span>
-              <span>Tag3</span>
-              <span>Tag4</span>
-              <span>Tag5</span>
-            </div>
+
             <div className="request-wrapper">
               <button
                 onClick={() => setModalShow(true)}
@@ -67,9 +82,7 @@ export function BookDetailView() {
         onHide={() => setModalShow(false)}
         onClickOkay={() => setModalShow(false)}
         okayBtnText="Send email"
-      >
-        Salam
-      </OfferModal>
+      />
     </>
   );
 }

@@ -1,5 +1,4 @@
 import * as yup from "yup";
-import { SUPPORTED_FORMATS } from "../consts";
 
 export const bookSchema = yup.object().shape({
   title: yup
@@ -20,12 +19,13 @@ export const bookSchema = yup.object().shape({
   pageNum: yup.number().required("Required"),
   condition: yup
     .string()
-    .required()
+    .required("Required")
     .oneOf(["New", "Good", "Poor"], "Only supported words"),
-  // imageFile: yup
-  //   .mixed()
-  //   .test("fileSize", "File Size is too large", (value) => value.size <= 200000)
-  //   .test("fileType", "Unsupported File Format", (value) =>
-  //     SUPPORTED_FORMATS.includes(value.type)
-  //   ),
+  imageFile: yup.mixed().test("required", "Required", function (value) {
+    if (this.parent?.imagePath || value) {
+      return true;
+    } else {
+      return false;
+    }
+  }),
 });

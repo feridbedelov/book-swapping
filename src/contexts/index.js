@@ -3,7 +3,15 @@ import { AuthProvider } from "./Auth.context";
 import { ScrollToTop } from "../components/ScrollToTop";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
-export const queryClient = new QueryClient();
+import "react-toastify/dist/ReactToastify.css";
+
+export const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+    },
+  },
+});
 
 export default function AppProviders({ children }) {
   return (

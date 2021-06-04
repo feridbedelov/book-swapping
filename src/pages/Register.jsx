@@ -100,6 +100,20 @@ export const Register = ({ history }) => {
                   name="phone"
                 />
               </div>
+              <div className="form-field">
+                <Field
+                  className="text-input"
+                  name="address"
+                  type="text"
+                  placeholder="Enter your address"
+                />
+                <ErrorMessage
+                  component="div"
+                  className="error-msg"
+                  name="address"
+                />
+              </div>
+
               <button className="submit-btn" type="submit">
                 {isLoading ? <Spinner /> : "Sign Up"}
               </button>

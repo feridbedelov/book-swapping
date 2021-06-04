@@ -1,8 +1,8 @@
 import "./index.scss";
 import { Link } from "react-router-dom";
-import { Image, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { imageBaseUrl } from "../../consts";
 
-export const Book = ({ book, linkUrl }) => {
+export const Book = ({ book }) => {
   const showTitle = () => {
     return book?.title?.length < 20
       ? book?.title
@@ -11,21 +11,19 @@ export const Book = ({ book, linkUrl }) => {
 
   return (
     <div className="card">
-      <img src={book?.imagePath} className="card-img-top" alt={book?.title} />
+      <img
+        src={`${imageBaseUrl}/${book?.imagePath}`}
+        className="card-img-top"
+        alt={book?.title}
+        style={{ minHeight: 350, maxHeight: 350 }}
+      />
       <div className="card-body">
         <div className="d-flex align-items-start">
-          {/* <OverlayTrigger
-            placement="top"
-            overlay={<Tooltip id={`tooltip-top`}>{book?.user}</Tooltip>}
-          >
-            <Image src={book?.userImage} alt={book?.userName} roundedCircle />
-          </OverlayTrigger> */}
-          <h6 className="card-title ml-2"> {showTitle()}</h6>
+          <h6 className="card-title"> {showTitle()}</h6>
         </div>
-      </div>
-      <div className="card-body">
-        <Link to={linkUrl} className="book-more-btn">
-          More{" "}
+
+        <Link to={`/books/detail/${book?.id}`} className="book-more-btn">
+          View More
         </Link>
       </div>
     </div>

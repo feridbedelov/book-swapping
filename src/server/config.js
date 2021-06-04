@@ -1,7 +1,8 @@
 import { getToken } from "../utils/token";
-import { logout } from "../services/auth.provider";
 import axios from "axios";
 import { history } from "../utils/history";
+
+const unAuthRoutes = ["/login", "/logout", "/register"];
 
 const axiosInstance = axios.create({
   baseURL: "https://bookswap.azurewebsites.net",
@@ -25,7 +26,8 @@ axiosInstance.interceptors.response.use(
     if (error.response.status === 401 && !originalRequest._retry) {
       if (axiosInstance.setAuthStateValue)
         axiosInstance.setAuthStateValue(null);
-      history.push("/logout");
+      if (!unAuthRoutes.includes(history.location.pathname))
+        history.push("/logout");
     }
     return Promise.reject(error.response.data);
   }
