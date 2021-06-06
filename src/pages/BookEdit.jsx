@@ -6,7 +6,11 @@ import { FullPageSpinner } from "../components/Spinner/FullPageSpinner";
 import { queryClient } from "../contexts";
 import { apiUrls } from "../server/urlConfig";
 import { post, put } from "../server/utils";
-import { fetchSingleBook } from "../services/book.provider";
+import {
+  editBook,
+  fetchSingleBook,
+  postBookImage,
+} from "../services/book.provider";
 import "../styles/bookEdit.scss";
 
 export const BookEdit = ({ match, history }) => {
@@ -17,6 +21,7 @@ export const BookEdit = ({ match, history }) => {
     data: bookDetails,
     isLoading,
     isError,
+    refetch,
   } = useQuery(["book", id], () => fetchSingleBook(id));
 
   const onSubmitHandler = async (values) => {
@@ -29,28 +34,24 @@ export const BookEdit = ({ match, history }) => {
       if (image) {
         const formData = new FormData();
         formData.append("file", image, image.name);
-        const options = {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        };
-        const response = await post(apiUrls.bookUploadImage, formData, options);
-        const imagePath = `${response.fileName}`;
-        await put(`${apiUrls.book}/${bookDetails?.id}`, {
+
+        const response = await postBookImage(formData);
+        const imagePath = `${response?.fileName}`;
+
+        await editBook(bookDetails?.id, {
           ...requestData,
           imagePath,
         });
       } else {
-        await put(`${apiUrls.book}/${bookDetails?.id}`, { ...requestData });
+        await editBook(bookDetails?.id, { ...requestData });
       }
-
+      await refetch();
       await queryClient.invalidateQueries("my-books");
       toast.success("Successfully updated");
-      setOnSubmitLoading(false);
       history.push("/my-books");
     } catch (error) {
-      toast.error("Server error");
       console.log(error);
+    } finally {
       setOnSubmitLoading(false);
     }
   };
@@ -69,7 +70,6 @@ export const BookEdit = ({ match, history }) => {
         initialValues={{
           ...bookDetails,
           imageFile: "",
-          condition: "",
         }}
       />
     </div>

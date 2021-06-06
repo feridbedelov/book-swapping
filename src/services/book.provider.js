@@ -1,4 +1,4 @@
-import { fetcher, remove } from "../server/utils";
+import { fetcher, post, put, remove } from "../server/utils";
 import { apiUrls } from "../server/urlConfig";
 
 export async function getMyBooks() {
@@ -29,4 +29,23 @@ export const getMoreBooks = async ({ pageParam = 0, queryKey }) => {
   );
 
   return videos;
+};
+
+export const editBook = async (id, formValues) => {
+  put(`${apiUrls.book}/${id}`, formValues);
+};
+
+export const createtBook = async (formValues) => {
+  await post(apiUrls.book, formValues);
+};
+
+export const postBookImage = async (formData) => {
+  const options = {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  };
+
+  const response = await post(apiUrls.bookUploadImage, formData, options);
+  return response;
 };

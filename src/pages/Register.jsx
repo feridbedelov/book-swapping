@@ -31,14 +31,14 @@ export const Register = ({ history }) => {
     <div className="auth-page-container">
       <div className="left">
         <div className="about-app">How does it work?</div>
+        <p className="mission">
+          “Share your knowledge. It is a way to achieve immortality.”
+        </p>
       </div>
 
       <div className="right">
         <div className="header">
           <div className="logo">AURORA</div>
-          <p className="mission">
-            “Share your knowledge. It is a way to achieve immortality.”
-          </p>
         </div>
         <Formik
           initialValues={{ email: "", password: "", fullName: "", phone: "" }}

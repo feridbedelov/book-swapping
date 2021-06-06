@@ -96,12 +96,6 @@ export function HomePage() {
           <div ref={loadMoreRef} className={`text-center`}>
             {isFetchingNextPage ? <Spinner /> : ""}
           </div>
-
-          {isLoading && (
-            <div className="text-center">
-              <Spinner />
-            </div>
-          )}
         </div>
       </div>
     </div>

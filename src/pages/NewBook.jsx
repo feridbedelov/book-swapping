@@ -1,11 +1,10 @@
 import { BookForm } from "../components/BookForm";
 import "../styles/newBook.scss";
-import { post } from "../server/utils";
-import { apiUrls } from "../server/urlConfig";
 import { queryClient } from "../contexts";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
+import { createtBook, postBookImage } from "../services/book.provider";
 
 export const NewBook = () => {
   const [loading, setLoading] = useState(false);
@@ -29,24 +28,17 @@ export const NewBook = () => {
     const formData = new FormData();
     formData.append("file", image, image.name);
 
-    const options = {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    };
-
     try {
-      const response = await post(apiUrls.bookUploadImage, formData, options);
-      const imagePath = `${response.fileName}`;
-      await post(apiUrls.book, { ...requestData, imagePath });
+      const response = await postBookImage(formData);
+      const imagePath = `${response?.fileName}`;
+      await createtBook({ ...requestData, imagePath });
       await queryClient.invalidateQueries("my-books");
       toast.success("Successfully added");
-      setLoading(false);
       history.push("/my-books");
     } catch (error) {
-      toast.error("Server error");
-      setLoading(false);
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 

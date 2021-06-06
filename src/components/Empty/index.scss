@@ -1,0 +1,14 @@
+.empty-case-wrapper {
+  border: 2px solid #e3e3e3;
+  height: 40vh;
+  margin: 25px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .icon-add {
+    font-size: 4em;
+  }
+}

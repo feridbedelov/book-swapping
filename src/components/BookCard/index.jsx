@@ -6,7 +6,7 @@ export const Book = ({ book }) => {
   const showTitle = () => {
     return book?.title?.length < 20
       ? book?.title
-      : book?.title?.slice(0, 20) + "...";
+      : book?.title?.slice(0, 14) + "...";
   };
 
   return (

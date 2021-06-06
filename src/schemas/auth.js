@@ -36,4 +36,9 @@ export const registerSchema = yup.object().shape({
       /^((\+)?994(\s)?)?(5[015]|7[07])(\s)?([0-9]{3})(\s)?([0-9]{2})(\s)?([0-9]{2})$/,
       "Invalid format"
     ),
+  address: yup
+    .string()
+    .required("Required field")
+    .min(10, "Can't be less than 10 chars")
+    .max(100, "Can't be longer than 100 chars"),
 });

@@ -16,7 +16,7 @@ export const MyBook = ({ book }) => {
   const showTitle = () => {
     return book?.title?.length < 20
       ? book?.title
-      : book?.title?.slice(0, 20) + "...";
+      : book?.title?.slice(0, 14) + "...";
   };
 
   const onEdit = () => {
@@ -32,7 +32,6 @@ export const MyBook = ({ book }) => {
     } catch (error) {
       console.log(error);
     } finally {
-      toast.error("Server error");
       setConfirmLoading(false);
       setConfirmationPopup(false);
     }
@@ -42,12 +41,16 @@ export const MyBook = ({ book }) => {
     setConfirmationPopup(true);
   };
 
+  const onDetail = () => {
+    history.push(`/books/detail/${book?.id}`);
+  };
+
   return (
     <>
       <div className="card">
         <img
           src={`${imageBaseUrl}/${book?.imagePath}`}
-          style={{ maxHeight: "300px" }}
+          style={{ maxHeight: "350px", minHeight: "350px" }}
           className="card-img-top"
           alt={book?.title}
         />
@@ -58,8 +61,11 @@ export const MyBook = ({ book }) => {
           <Button onClick={onEdit} size="sm" className="book-more-btn mr-2">
             Edit
           </Button>
-          <Button onClick={onDelete} size="sm" className="book-more-btn">
+          <Button onClick={onDelete} size="sm" className="book-more-btn mr-2">
             Delete
+          </Button>
+          <Button onClick={onDetail} size="sm" className="book-more-btn">
+            Detail
           </Button>
         </div>
       </div>
